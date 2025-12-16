@@ -1,0 +1,8 @@
+# 忽略编译产生的垃圾文件
+*.exe
+*.o
+*.obj
+
+# 忽略 VS Code 的缓存
+.vscode/ipch/
+.vscode/.browse.VC.db*
