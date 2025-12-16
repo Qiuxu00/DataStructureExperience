@@ -72,6 +72,7 @@ void heap_sort(vector<int> &vec)
         vec[i] = h1.heap_[i];
     }
 }
+// 你好
 int main()
 {
     vector<int> test = {6, 1, 2, 7, 9, 3, 4, 5, 10, 8};
