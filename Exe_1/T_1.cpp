@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 template <class T>
@@ -30,6 +31,7 @@ int func(T arr[], int L, int R, T val)
     {
         return func(arr, (L + R) / 2, R, val);
     }
+    return NAN;
 }
 
 int main()
