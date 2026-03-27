@@ -32,11 +32,11 @@ int main()
             }
             else
             {
-                if (dp[i - 1][j] && Z[i + j - 1] == X[i - 1])
+                if (dp[i - 1][j] && Z[i + j - 1] == X[i - 1]) // From up
                 {
                     dp[i][j] = 1;
                 }
-                else if (Z[i + j - 1] == Y[j - 1] && dp[i][j - 1])
+                else if (Z[i + j - 1] == Y[j - 1] && dp[i][j - 1]) // From left
                 {
                     dp[i][j] = 1;
                 }
