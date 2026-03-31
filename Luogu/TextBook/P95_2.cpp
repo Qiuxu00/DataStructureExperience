@@ -3,10 +3,9 @@ using namespace std;
 
 int main()
 {
-    vector<int> p_1 = {1, 0, 0, 1, 0, 1, 0, 1};
-    vector<int> p_2 = {0, 1, 0, 1, 0, 1, 1, 0};
+    vector<int> p_1 = {0, 1, 0, 1, 0, 1, 1, 0};
+    vector<int> p_2 = {1, 0, 0, 1, 0, 1, 0, 1};
     vector<vector<int>> dp(p_1.size() + 1, vector<int>(p_2.size() + 1));
-    vector<int> pre(p_1.size());
     for (int i = 1; i < dp.size(); i++)
     {
         for (int j = 1; j < dp[0].size(); j++)
@@ -14,7 +13,6 @@ int main()
             if (p_1[i - 1] == p_2[j - 1])
             {
                 dp[i][j] = dp[i - 1][j - 1] + 1;
-                pre[i - 1] = i - 1;
             }
             else
             {
