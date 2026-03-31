@@ -18,7 +18,7 @@ int main()
     }
     for (int i = 0; i < left; i++)
     {
-    }
+        }
 
     return 0;
 }
