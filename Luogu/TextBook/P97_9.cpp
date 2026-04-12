@@ -2,9 +2,9 @@
 using namespace std;
 int main()
 {
-    string X = "chocolate";
-    string Y = "chips";
-    string Z = "cchocohilaptes";
+    string X = "LOVE";
+    string Y = "FEAST";
+    string Z = "FLOEVASET";
     vector<vector<bool>> dp(X.size() + 1, vector<bool>(Y.size() + 1));
     dp[0][0] = 1;
 

@@ -2,7 +2,7 @@
 using namespace std;
 int main()
 {
-    vector<int> mat = {5, 10, 3, 12, 5, 50};
+    vector<int> mat = {8, 10, 6, 11, 3, 35};
     vector<vector<int>> dp(mat.size() - 1, vector<int>(mat.size() - 1));
     for (int step = 1; step < mat.size(); step++)
     {
