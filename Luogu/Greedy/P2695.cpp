@@ -3,8 +3,18 @@ using namespace std;
 
 int main()
 {
-    vector<int> heads = {5, 4};
-    vector<int> z = {7, 8, 4};
+    int n, m;
+    // 1. 读入 n (头数) 和 m (骑士数)
+    if (!(cin >> n >> m))
+        return 0;
+
+    vector<int> heads(n);
+    vector<int> z(m);
+
+    for (int i = 0; i < n; i++)
+        cin >> heads[i];
+    for (int i = 0; i < m; i++)
+        cin >> z[i];
     int ptr_h = 0;
     int ptr_z = 0;
     int result = 0;
@@ -12,13 +22,13 @@ int main()
     sort(z.begin(), z.end());
     for (; ptr_z < z.size(); ptr_z++)
     {
-        if (z[ptr_z] >= heads[ptr_h])
+        if (ptr_h < heads.size() && z[ptr_z] >= heads[ptr_h])
         {
             result += z[ptr_z];
             ptr_h++;
         }
     }
-    if (ptr_h != heads.size())
+    if (ptr_h < heads.size())
     {
         cout << "you died!" << endl;
         return 0;
