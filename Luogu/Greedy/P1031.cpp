@@ -7,7 +7,13 @@ using namespace std;
 int main()
 {
     // 实际题目建议用 cin 读入 N
-    vector<int> heap = {4, 4, 16, 16};
+    int N;
+    cin >> N;
+    vector<int> heap(N);
+    for (int &i : heap)
+    {
+        cin >> i;
+    }
     int n = heap.size();
 
     // 1. 计算平均值
