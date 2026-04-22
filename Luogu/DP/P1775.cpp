@@ -2,38 +2,35 @@
 using namespace std;
 int main()
 {
-    vector<int> w = {1, 1, 10, 100};
-    vector<vector<int>> dp(w.size() + 1, vector<int>(w.size() + 1));
-    for (int i = 1; i <= w.size(); i++)
+    int n;
+    cin >> n;
+    vector<int> w(n);
+    for (auto &i : w)
     {
-        dp[i][i] = w[i - 1];
+        cin >> i;
     }
+
+    vector<vector<int>> dp(w.size(), vector<int>(w.size()));
+    vector<int> wp(w.size() + 1);
+    wp[0] = 0;
+    wp[1] = w[0];
+    for (int i = 2; i < wp.size(); i++)
+    {
+        wp[i] = wp[i - 1] + w[i - 1];
+    }
+
     for (int step = 1; step < w.size(); step++)
     {
-        for (int start = 1; start < w.size() - step + 1; start++)
+        for (int start = 0; start < w.size() - step; start++)
         {
-            if (step == 1)
+            int sum = +(wp[start + step + 1] - wp[start]);
+            dp[start][start + step] = dp[start][start] + dp[start + 1][start + step] + sum;
+            for (int k = 1; k < step; k++)
             {
-                dp[start][start + step] = w[start - 1] + dp[start + 1][start + step];
-            }
-            else
-            {
-                dp[start][start + step] = w[start - 1] + dp[start + 1][start + step] * 2;
-                for (int k = start + 1; k < start + step; k++)
-                {
-                    if (k + 1 == start + step)
-                    {
-                        dp[start][start + step] = min(dp[start][start + step], dp[start][k] * 2 + w[k]);
-                    }
-                    else
-                    {
-                        dp[start][start + step] = min(dp[start][start + step], (dp[start][k] + dp[k + 1][start + step]) * 2);
-                    }
-                }
+                dp[start][start + step] = min(dp[start][start + step], dp[start][start + k] + dp[start + k + 1][start + step] + sum);
             }
         }
     }
-    cout << dp[1][w.size()] << endl;
-
+    cout << dp[0][w.size() - 1] << endl;
     return 0;
 }
