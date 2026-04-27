@@ -3,18 +3,18 @@ using namespace std;
 
 void rec(vector<int> &vec, int L, int R)
 {
-    if (L == R)
+    if (L >= R)
     {
         return;
     }
-    srand(time(NULL));
-    int pivot = rand() % (vec.size());
-    swap(vec[pivot], vec[0]);
+
+    int pivot = L + (rand() % (R - L + 1));
+    swap(vec[pivot], vec[L]);
     int lt = L;
     int rt = R;
     int ptr = lt + 1;
     pivot = vec[L];
-    while (ptr < rt)
+    while (ptr <= rt)
     {
         if (vec[ptr] < pivot)
         {
@@ -62,6 +62,7 @@ void test()
 
 int main()
 {
+    srand(time(NULL));
     // int n;
     // cin >> n;
     // vector<vector<int>> res = res;
