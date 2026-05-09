@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -9,29 +7,60 @@ struct work
     int ddl;
     int val;
 };
+bool comp(work &w1, work &w2)
+{
+    return w1.val > w2.val;
+}
+function<bool(work &, work &)> Compare = comp;
 
-void solve(vector<int> &res)
+void solve(vector<long long> &res)
 {
     int N;
-    // 1. 检查输入是否成功，避免 N 是垃圾值
     if (!(cin >> N))
         return;
 
-    // 如果 N 过大，这里可能会抛出异常，实际应用中需根据题目范围判断
     vector<work> W(N);
+    int max_ddl = 0;
     for (int i = 0; i < N; ++i)
     {
         if (!(cin >> W[i].ddl >> W[i].val))
             break;
+        if (W[i].ddl > max_ddl)
+        {
+            max_ddl = W[i].ddl;
+        }
     }
-
-    // 2. 使用 const 引用，这是更安全的做法
     sort(W.begin(), W.end(), [](const work &w1, const work &w2)
-         {
-             return w1.val < w2.val; // 确保是严格小于
-         });
-
-    // 提示：res 在这里被传入但没被使用，可能也是你逻辑上的遗漏
+         { return w1.ddl < w2.ddl; });                                // 现在W是按照ddl从小到大
+    priority_queue<work, vector<work>, decltype(Compare)> q(Compare); // q是最小堆，比较的是val
+    int ptr = 0;
+    while (ptr < N)
+    {
+        if (q.size() + 1 > W[ptr].ddl)
+        {
+            if (q.top().val < W[ptr].val)
+            {
+                q.pop();
+                q.push(W[ptr++]);
+            }
+            else
+            {
+                ptr++;
+            }
+        }
+        else
+        {
+            q.push(W[ptr++]);
+        }
+    }
+    long long result = 0;
+    while (!q.empty())
+    {
+        result += q.top().val;
+        q.pop();
+    }
+    res.push_back(result);
+    return;
 }
 
 int main()
@@ -43,10 +72,14 @@ int main()
     if (!(cin >> n))
         return 0;
 
-    vector<int> res;
+    vector<long long> res;
     for (int i = 0; i < n; i++)
     {
         solve(res);
+    }
+    for (long long i : res)
+    {
+        cout << i << endl;
     }
     return 0;
 }
