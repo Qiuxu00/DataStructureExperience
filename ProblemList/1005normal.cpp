@@ -29,24 +29,16 @@ void rec(vector<int> &nums, int l, int r, int times = 1)
             swap(nums[left], nums[right]);
         }
     }
-    rec(nums, l, left - 1, times + 1);
-    rec(nums, right + 1, r, times + 1);
     if (times == 2)
     {
-        for (int i : nums)
-        {
-            cout << i << ' ';
-        }
-        cout << endl;
+        return;
     }
+    rec(nums, l, left - 1, times + 1);
+    rec(nums, right + 1, r, times + 1);
 
     return;
 }
-void test()
-{
-    vector<int> nums = {6, 3, 7, 8, 5, 1, 4, 2, 4, 9, 10};
-    rec(nums, 0, 10);
-}
+
 void solve()
 {
     int n;
@@ -56,6 +48,12 @@ void solve()
     {
         cin >> i;
     }
+    rec(nums, 0, n - 1);
+    for (int i = 0; i < n; i++)
+    {
+        cout << nums[i] << (i == n - 1 ? "" : " ");
+    }
+    cout << endl;
 }
 
 int main()
@@ -66,4 +64,5 @@ int main()
     {
         solve();
     }
+    return 0;
 }
