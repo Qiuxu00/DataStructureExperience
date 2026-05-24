@@ -17,7 +17,8 @@ void solve(vector<int> &res)
         cin >> from >> to >> len;
         Edge[from].push_back({to, len});
         Edge[to].push_back({from, len});
-    }
+    } // 构建邻接表
+
     // dp[i][j]表示的是在最多能够使用i块钱的情况下，从起点到j国的最短距离
     vector<vector<int>> dp(M + 1, vector<int>(n + 1, 1e9));
     for (int i = 0; i <= M; i++)
@@ -37,7 +38,7 @@ void solve(vector<int> &res)
                 }
                 else
                 {
-                    for (auto p : Edge[j])
+                    for (auto p : Edge[j]) // 寻找能通向当前国家的边
                     {
                         if (dp[i - B[j - 1]][p.first] == 1e9)
                         {
